@@ -4,6 +4,7 @@
 
 body {
   --color-grey: #dee2e6;
+  font-family: "Inter", sans-serif;
 }
 
 body[data-theme="light"] {
