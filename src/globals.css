@@ -3,21 +3,29 @@
 @tailwind utilities;
 
 body {
-  --color-grey: #dee2e6;
   font-family: "Inter", sans-serif;
 }
 
 body[data-theme="light"] {
   --color-black: #000;
   --color-white: #fff;
+  --color-light-grey: #f3f4f6;
+  --color-grey: #dee2e6;
+  --color-dark-grey: #616161;
 }
 
 body[data-theme="dark"] {
   --color-black: #fff;
   --color-white: #000;
+  --color-light-grey: #f3f4f6;
+  --color-grey: #dee2e6;
+  --color-dark-grey: #616161;
+}
+
+:is(h1, h2, h3, h4) {
+  font-weight: 700;
 }
 
 h2 {
   font-size: 6rem;
-  font-weight: 700;
 }

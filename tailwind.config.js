@@ -7,6 +7,8 @@ export default {
       black: "var(--color-black)",
       white: "var(--color-white)",
       grey: "var(--color-grey)",
+      darkGrey: "var(--color-dark-grey)",
+      lightGrey: "var(--color-light-grey)",
     },
   },
   plugins: [],
