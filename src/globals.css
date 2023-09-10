@@ -17,15 +17,11 @@ body[data-theme="light"] {
 body[data-theme="dark"] {
   --color-black: #f9f7f2;
   --color-white: #141414;
-  --color-light-grey: #f3f4f6;
+  --color-light-grey: #111;
   --color-grey: #dee2e6;
   --color-dark-grey: #616161;
 }
 
 :is(h1, h2, h3, h4) {
   font-weight: 700;
-}
-
-h2 {
-  font-size: 6rem;
 }

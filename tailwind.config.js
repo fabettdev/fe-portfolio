@@ -10,6 +10,25 @@ export default {
       darkGrey: "var(--color-dark-grey)",
       lightGrey: "var(--color-light-grey)",
     },
+    screens: {
+      xs: "320px",
+      sm: "576px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
+    },
+    container: {
+      padding: {
+        DEFAULT: "1rem",
+      },
+
+      screens: {
+        sm: "576px",
+        md: "768px",
+        lg: "1024px",
+        xl: "1280px",
+      },
+    },
   },
   plugins: [],
 };
