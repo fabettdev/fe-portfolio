@@ -16,3 +16,8 @@ body[data-theme="dark"] {
   --color-black: #fff;
   --color-white: #000;
 }
+
+h2 {
+  font-size: 6rem;
+  font-weight: 700;
+}
