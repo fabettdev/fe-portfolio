@@ -16,7 +16,6 @@ function Home() {
         <Experience />
         <Projects />
       </main>
-      <div className="h-[30vh]"></div>
       <Footer />
     </>
   );
