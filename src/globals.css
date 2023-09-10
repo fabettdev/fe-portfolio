@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  --color-grey: #dee2e6;
+}
+
 body[data-theme="light"] {
   --color-black: #000;
   --color-white: #fff;
