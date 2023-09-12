@@ -10,7 +10,7 @@ function Home() {
   return (
     <>
       <Header />
-      <main className="bg-white text-black py-40 md:py-56 flex flex-col gap-48 lg:gap-72">
+      <main className="bg-white text-black">
         <Hero />
         <Skills />
         <Experience />
