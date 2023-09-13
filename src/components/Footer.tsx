@@ -1,72 +1,137 @@
-import { useTransform, useScroll, motion } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
+import {
+  stagger,
+  useInView,
+  useAnimate,
+  AnimationSequence,
+} from "framer-motion";
 
 export default function Footer(): React.ReactElement {
-  const footerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: footerRef,
-    offset: ["start end", "end end"],
-  });
-  const bottomProgress = useTransform(scrollYProgress, [0, 1], ["100%", "0%"]);
+  const headerRef = useRef(null);
+  const contentRef = useRef(null);
+
+  const [scope, animate] = useAnimate();
+
+  const isHeaderInView = useInView(headerRef, { amount: 0.5, once: true });
+  const isContentInView = useInView(contentRef, { amount: 0.75, once: true });
+
+  const footerHeaderSequence: AnimationSequence = [
+    [
+      ".footer-header-rule",
+      {
+        width: isHeaderInView ? "100%" : "0%",
+      },
+      {
+        duration: 0.4,
+      },
+    ],
+
+    [
+      ".footer-title",
+      {
+        transform: isHeaderInView ? "translate(0%, 0%)" : "translate(0%, 100%)",
+      },
+      {
+        duration: 0.6,
+        at: 0.25,
+      },
+    ],
+  ];
+
+  const footerContentSequence: AnimationSequence = [
+    [
+      ".footer-content-rule",
+      {
+        width: isContentInView ? "100%" : "0%",
+      },
+      {
+        duration: 0.4,
+      },
+    ],
+
+    [
+      ".footer-link",
+      {
+        transform: isContentInView
+          ? "translate(0%, 0%)"
+          : "translate(0%, -100%)",
+      },
+      {
+        duration: 0.6,
+        delay: stagger(0.1),
+        at: 0.25,
+      },
+    ],
+  ];
+
+  useEffect(() => {
+    animate(footerHeaderSequence);
+    animate(footerContentSequence);
+  }, [isHeaderInView, isContentInView]);
 
   return (
-    <footer ref={footerRef} className="h-[24rem] md:h-[30rem] overflow-hidden">
-      <motion.div
-        style={{ bottom: bottomProgress }}
-        className="flex bg-black text-white justify-center items-center relative bottom-full h-full"
+    <footer className="py-14 md:py-24 bg-black text-white">
+      <div
+        ref={scope}
+        className="container mx-auto flex flex-col justify-center"
       >
-        <div className="container">
-          <div className="h-1 bg-white"></div>
-          <div className="md:flex text-xl md:text-2xl lg:text-3xl mb-16">
-            <div className="md:w-3/12 border-b md:border-0">
-              <a
-                href="https://tailwindcss.com/docs/border-color"
-                className="block cursor-pointer py-2 md:py-0 md:pt-16 md:mt-2 md:pb-2 md:mr-5  md:border-r"
-              >
-                Email
-              </a>
-            </div>
+        <div ref={contentRef} className="h-40 flex flex-col mb-16">
+          <div className="footer-content-rule h-1 bg-white w-0"></div>
+          <div className="md:flex text-xl md:text-2xl lg:text-3xl flex-1">
+            <a
+              href="https://tailwindcss.com/docs/border-color"
+              className="block h-1/4 md:h-full md:w-3/12 md:pt-2"
+            >
+              <div className="h-full overflow-hidden">
+                <div className="footer-link h-full border-b md:border-b-0 md:border-r flex items-center md:items-end -translate-y-full">
+                  <div className="pl-5 md:pb-2 w-full">Email</div>
+                </div>
+              </div>
+            </a>
 
-            <div className="md:w-3/12 border-b md:border-0">
-              <a
-                href="#"
-                className="block cursor-pointer py-2 md:py-0 md:pt-16 md:mt-2 md:pb-2 md:mr-5  md:border-r"
-              >
-                LinkedIn
-              </a>
-            </div>
+            <a
+              href="https://tailwindcss.com/docs/border-color"
+              className="block h-1/4 md:h-full md:w-3/12 md:pt-2"
+            >
+              <div className="h-full overflow-hidden">
+                <div className="footer-link h-full border-b md:border-b-0 md:border-r flex items-center md:items-end -translate-y-full">
+                  <div className="pl-5 md:pb-2 w-full">LinkedIn</div>
+                </div>
+              </div>
+            </a>
 
-            <div className="md:w-3/12 border-b md:border-0">
-              <a
-                href="#"
-                className="block cursor-pointer py-2 md:py-0 md:pt-16 md:mt-2 md:pb-2 md:mr-5  md:border-r"
-              >
-                GitHub
-              </a>
-            </div>
-
-            <div className="md:w-3/12 border-b md:border-0">
-              <a
-                href="#"
-                className="block cursor-pointer py-2 md:py-0 md:pt-16 md:mt-2 md:pb-2 md:mr-5 "
-              >
-                Discord
-              </a>
-            </div>
+            <a
+              href="https://tailwindcss.com/docs/border-color"
+              className="block h-1/4 md:h-full md:w-3/12 md:pt-2"
+            >
+              <div className="h-full overflow-hidden">
+                <div className="footer-link h-full border-b md:border-b-0 md:border-r flex items-center md:items-end -translate-y-full">
+                  <div className="pl-5 md:pb-2 w-full">GitHub</div>
+                </div>
+              </div>
+            </a>
+            <a
+              href="https://tailwindcss.com/docs/border-color"
+              className="block h-1/4 md:h-full md:w-3/12 md:pt-2"
+            >
+              <div className="h-full overflow-hidden">
+                <div className="footer-link h-full border-b md:border-b-0 flex items-center md:items-end -translate-y-full">
+                  <div className="pl-5 md:pb-2 w-full">Discord</div>
+                </div>
+              </div>
+            </a>
           </div>
-
-          <header className="pl-[20%] md:pl-[35%]">
-            <motion.div
-              initial={{ width: "0%" }}
-              whileInView={{ width: "100%" }}
-              className="h-1 bg-white"
-            ></motion.div>
-            <h2 className="leading-none mt-3 text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
-              Contatti
-            </h2>
-          </header>
         </div>
-      </motion.div>
+
+        <header ref={headerRef} className="pl-[20%] md:pl-[35%]">
+          <div className="footer-header-rule h-1 bg-white w-0"></div>
+          <h2 className="leading-none mt-3 text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl overflow-hidden">
+            <span className="footer-title relative inline-block translate-y-full">
+              Contatti
+            </span>
+          </h2>
+        </header>
+      </div>
     </footer>
   );
 }

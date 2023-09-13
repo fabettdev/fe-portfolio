@@ -18,3 +18,13 @@ export const heroSequence: AnimationSequence = [
     },
   ],
 ];
+
+export const footerHeaderSequence: AnimationSequence = [
+  [
+    ".contacts",
+    { transform: "translate(0%, 0%)" },
+    {
+      duration: 0.25,
+    },
+  ],
+];

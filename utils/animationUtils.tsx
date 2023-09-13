@@ -3,32 +3,32 @@ import { stringToWordsArray, stringToLettersArray } from "./stringUtils";
 export function stringToWordsElements(string: string, id: string) {
   const newString: string[] = stringToWordsArray(string);
 
-  function mapString(item: string, key: number) {
+  function mapWords(word: string, key: number) {
     return (
-      <span key={key} className="overflow-hidden inline-block">
-        <span className={`${id} relative inline-block translate-y-full`}>
-          {item}
+      <span key={key} className="inline-block overflow-hidden ">
+        <span className={`inline-block ${id} relative  translate-y-full`}>
+          {word === " " ? "\u00A0" : word}
         </span>
       </span>
     );
   }
 
-  return newString.map(mapString);
+  return newString.map(mapWords);
 }
 
 export function stringToLettersElements(string: string, id: string) {
   const newString: string[] = stringToLettersArray(string);
 
-  function mapString(item: string, key: number) {
+  function mapLetters(letter: string, key: number) {
     return (
       <span
         key={key}
         className={`${id} relative inline-block translate-y-full`}
       >
-        {item}
+        {letter}
       </span>
     );
   }
 
-  return newString.map(mapString);
+  return newString.map(mapLetters);
 }
