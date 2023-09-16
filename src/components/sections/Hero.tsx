@@ -11,7 +11,7 @@ export default function Hero(): React.ReactElement {
 
   return (
     <section
-      className="container mx-auto flex justify-center items-center"
+      className="container mx-auto items-center flex justify-center h-[100svh]"
       ref={scope}
     >
       <div>
