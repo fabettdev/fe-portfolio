@@ -1,7 +1,7 @@
 import ProjectCard from "../ProjectCard";
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { PROJECTS } from "../../../utils/constants";
+import { PROJECTS } from "../../utils/constants";
 
 export default function Projects(): React.ReactElement {
   const ref = useRef(null);

@@ -1,19 +1,74 @@
 import { ImConnection } from "react-icons/im";
 import { BsBatteryFull } from "react-icons/bs";
 import { MdSignalCellularAlt } from "react-icons/md";
+import { skillsArray } from "../utils/skillsUtils";
+import smartphoneBg from "../assets/iphone-bg.jpg";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
 
 export default function Smartphone(): React.ReactElement {
+  const ref = useRef(null);
+
+  /* const [state, setState] = useState({
+    rotate: 0,
+  }); */
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+
+  const rotate = useTransform(scrollYProgress, [0.5, 1], [0, -100]);
+
+  function renderSkills(): React.ReactElement {
+    return skillsArray.map(mapSkills);
+  }
+
+  function mapSkills(item: any): React.ReactElement {
+    let color = "";
+
+    if (item.colorSingle) {
+      color = `bg-[#${item.colorSingle}]`;
+    } else {
+      color = `bg-gradient-to-b from-[#${item.colorFrom}] to-[#${item.colorTo}]`;
+    }
+
+    return (
+      <article
+        key={item.id}
+        className="w-3/12 lg:w-2/12 lg:text-sm flex flex-col items-center lg:justify-center"
+      >
+        <figure
+          className={`w-[70%] lg:w-2/4 aspect-square ${color} flex justify-center items-center rounded-xl mb-1`}
+        >
+          <img
+            className="w-[70%] h-auto"
+            src={item.src}
+            alt={item.name + " logo"}
+          />
+        </figure>
+        <h3 className="font-medium">{item.name}</h3>
+      </article>
+    );
+  }
+
+  console.log(rotate);
+
   return (
-    <div className="border-[0.1rem] border-[#3B3C40] rounded-[3rem] w-[22rem] lg:w-[60rem] aspect-[1/2] lg:aspect-[2]">
+    <motion.div
+      ref={ref}
+      className="border-[0.1rem] border-[#3B3C40] rounded-[3rem] w-[16rem] md:w-[20rem] lg:w-[50rem] xl:w-[52.5rem] xxl:w-[55rem] aspect-[1/2] lg:aspect-[2]"
+      style={{
+        transformOrigin: "top center",
+        rotateX: rotate,
+      }}
+    >
       <div className="h-full border-[0.15rem] border-[#8D8A8B] rounded-[3rem] w-full">
         <div className="h-full border-[0.2rem] border-[#3B3C40] rounded-[3rem] w-full">
           <div className="h-full border-[0.225rem] border-[#A0A0A0] rounded-[3rem] w-full">
             <div className="h-full border-[0.45rem] border-[#000] rounded-[2.75rem] w-full overflow-hidden relative text-[#F9F9FA]">
-              <img
-                className="w-full h-full blur-xl"
-                src="../../assets/iphone-bg.jpg"
-              />
-              <div className="absolute top-0 left-0 h-full w-full bg-black opacity-50"></div>
+              <img className="w-full h-full blur-xl" src={smartphoneBg} />
+              <div className="absolute top-0 left-0 h-full w-full bg-[#141414] opacity-50"></div>
               <div className="absolute top-0 w-1/2 h-[4%] bg-[#000] left-1/2 -translate-x-1/2 rounded-b-2xl lg:left-0 lg:w-[4%] lg:h-1/2 lg:translate-y-1/2 lg:rounded-r-2xl"></div>
               <div className="absolute top-0 w-1/4 left-0 flex justify-center items-end h-[4%] text-xs lg:hidden">
                 11:33
@@ -29,155 +84,7 @@ export default function Smartphone(): React.ReactElement {
                     <h2>Competenze</h2>
                   </header>
                   <div className="flex flex-wrap gap-y-4 lg:gap-y-5">
-                    <article className="w-3/12 lg:w-2/12 lg:text-sm flex flex-col items-center lg:justify-center">
-                      <figure className="w-[70%] lg:w-2/4 aspect-square bg-gradient-to-b to-[#F16529] from-[#E44D26] flex justify-center items-center rounded-xl mb-1">
-                        <img
-                          className="w-[70%] h-auto"
-                          src={"../../../assets/skills/html.png"}
-                        />
-                      </figure>
-                      <h3 className="font-medium">HTML</h3>
-                    </article>
-
-                    <article className="w-3/12 lg:w-2/12 lg:text-sm flex flex-col items-center lg:justify-center">
-                      <figure className="w-[70%] lg:w-2/4 aspect-square bg-gradient-to-b to-[#35A8DB] from-[#1572B6] flex justify-center items-center rounded-xl mb-1">
-                        <img
-                          className="w-[70%] h-auto"
-                          src={"../../../assets/skills/css.png"}
-                        />
-                      </figure>
-                      <h3 className="font-medium">CSS</h3>
-                    </article>
-
-                    <article className="w-3/12 lg:w-2/12 lg:text-sm flex flex-col items-center lg:justify-center">
-                      <figure className="w-[70%] lg:w-2/4 aspect-square bg-[#fff] flex justify-center items-center rounded-xl mb-1">
-                        <img
-                          className="w-[70%] h-auto"
-                          src={"../../../assets/skills/sass.png"}
-                        />
-                      </figure>
-                      <h3 className="font-medium">Sass</h3>
-                    </article>
-
-                    <article className="w-3/12 lg:w-2/12 lg:text-sm flex flex-col items-center lg:justify-center">
-                      <figure className="w-[70%] lg:w-2/4 aspect-square bg-[#F0DB4F] flex justify-center items-center rounded-xl mb-1">
-                        <img
-                          className="w-[70%] h-auto"
-                          src={"../../../assets/skills/javascript.png"}
-                        />
-                      </figure>
-                      <h3 className="font-medium">JavaScript</h3>
-                    </article>
-
-                    <article className="w-3/12 lg:w-2/12 lg:text-sm flex flex-col items-center lg:justify-center">
-                      <figure className="w-[70%] lg:w-2/4 aspect-square bg-[#2D79C7] flex justify-center items-center rounded-xl mb-1">
-                        <img
-                          className="w-[70%] h-auto"
-                          src={"../../../assets/skills/typescript.png"}
-                        />
-                      </figure>
-                      <h3 className="font-medium">TypeScript</h3>
-                    </article>
-
-                    <article className="w-3/12 lg:w-2/12 lg:text-sm flex flex-col items-center lg:justify-center">
-                      <figure className="w-[70%] lg:w-2/4 aspect-square bg-[#fff] flex justify-center items-center rounded-xl mb-1">
-                        <img
-                          className="w-[70%] h-auto"
-                          src={"../../../assets/skills/react.png"}
-                        />
-                      </figure>
-                      <h3 className="font-medium">React/Native</h3>
-                    </article>
-
-                    <article className="w-3/12 lg:w-2/12 lg:text-sm flex flex-col items-center lg:justify-center">
-                      <figure className="w-[70%] lg:w-2/4 aspect-square bg-[#000] flex justify-center items-center rounded-xl mb-1">
-                        <img
-                          className="w-[70%] h-auto"
-                          src={"../../../assets/skills/next.png"}
-                        />
-                      </figure>
-                      <h3 className="font-medium">Next</h3>
-                    </article>
-
-                    <article className="w-3/12 lg:w-2/12 lg:text-sm flex flex-col items-center lg:justify-center">
-                      <figure className="w-[70%] lg:w-2/4 aspect-square bg-[#fff] flex justify-center items-center rounded-xl mb-1">
-                        <img
-                          className="w-[70%] h-auto"
-                          src={"../../../assets/skills/expo.png"}
-                        />
-                      </figure>
-                      <h3 className="font-medium">Expo</h3>
-                    </article>
-
-                    <article className="w-3/12 lg:w-2/12 lg:text-sm flex flex-col items-center lg:justify-center">
-                      <figure className="w-[70%] lg:w-2/4 aspect-square bg-gradient-to-b to-[#E23237] from-[#B52E31] flex justify-center items-center rounded-xl mb-1">
-                        <img
-                          className="w-[70%] h-auto"
-                          src={"../../../assets/skills/angular.png"}
-                        />
-                      </figure>
-                      <h3 className="font-medium">Angular</h3>
-                    </article>
-
-                    <article className="w-3/12 lg:w-2/12 lg:text-sm flex flex-col items-center lg:justify-center">
-                      <figure className="w-[70%] lg:w-2/4 aspect-square bg-[#fff] flex justify-center items-center rounded-xl mb-1">
-                        <img
-                          className="w-[70%] h-auto"
-                          src={"../../../assets/skills/redux.png"}
-                        />
-                      </figure>
-                      <h3 className="font-medium">Redux</h3>
-                    </article>
-
-                    <article className="w-3/12 lg:w-2/12 lg:text-sm flex flex-col items-center lg:justify-center">
-                      <figure className="w-[70%] lg:w-2/4 aspect-square bg-gradient-to-b from-[#EC0A8E]  to-[#652C89] flex justify-center items-center rounded-xl mb-1">
-                        <img
-                          className="w-[70%] h-auto"
-                          src={"../../../assets/skills/rxjs.png"}
-                        />
-                      </figure>
-                      <h3 className="font-medium">RxJs</h3>
-                    </article>
-
-                    <article className="w-3/12 lg:w-2/12 lg:text-sm flex flex-col items-center lg:justify-center">
-                      <figure className="w-[70%] lg:w-2/4 aspect-square bg-[#fff] flex justify-center items-center rounded-xl mb-1">
-                        <img
-                          className="w-[70%] h-auto"
-                          src={"../../../assets/skills/mysql.png"}
-                        />
-                      </figure>
-                      <h3 className="font-medium">MySQL</h3>
-                    </article>
-
-                    <article className="w-3/12 lg:w-2/12 lg:text-sm flex flex-col items-center lg:justify-center">
-                      <figure className="w-[70%] lg:w-2/4 aspect-square bg-[#fff] flex justify-center items-center rounded-xl mb-1">
-                        <img
-                          className="w-[70%] h-auto"
-                          src={"../../../assets/skills/tailwind.png"}
-                        />
-                      </figure>
-                      <h3 className="font-medium">Tailwind</h3>
-                    </article>
-
-                    <article className="w-3/12 lg:w-2/12 lg:text-sm flex flex-col items-center lg:justify-center">
-                      <figure className="w-[70%] lg:w-2/4 aspect-square bg-[#fff] flex justify-center items-center rounded-xl mb-1">
-                        <img
-                          className="w-[70%] h-auto"
-                          src={"../../../assets/skills/framer-motion.png"}
-                        />
-                      </figure>
-                      <h3 className="font-medium">Framer Motion</h3>
-                    </article>
-
-                    <article className="w-3/12 lg:w-2/12 lg:text-sm flex flex-col items-center lg:justify-center">
-                      <figure className="w-[70%] lg:w-2/4 aspect-square bg-[#fff] flex justify-center items-center rounded-xl mb-1">
-                        <img
-                          className="w-[70%] h-auto"
-                          src={"../../../assets/skills/git.png"}
-                        />
-                      </figure>
-                      <h3 className="font-medium">Git</h3>
-                    </article>
+                    {renderSkills()}
                   </div>
                 </div>
               </div>
@@ -185,6 +92,6 @@ export default function Smartphone(): React.ReactElement {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

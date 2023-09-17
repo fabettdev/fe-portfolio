@@ -1,5 +1,5 @@
 import Pill from "./ui/Pill";
-import { Project } from "../../utils/constants";
+import { Project } from "../utils/constants";
 
 export default function ProjectCard(props: Project): React.ReactElement {
   function mapStack(item: string, idx: number): React.ReactElement {
