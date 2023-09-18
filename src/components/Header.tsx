@@ -7,8 +7,9 @@ import { BiSolidColor } from "react-icons/bi";
 export default function Header(): React.ReactElement {
   function switchTheme(): void {
     const theme: string | undefined = document.body.dataset.theme;
-
-    document.body.dataset.theme = theme === "light" ? "dark" : "light";
+    const newTheme: string = theme === "light" ? "dark" : "light";
+    document.body.dataset.theme = newTheme;
+    localStorage.setItem("theme", newTheme);
   }
 
   return (

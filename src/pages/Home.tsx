@@ -7,6 +7,12 @@ import Experience from "../components/sections/Experience";
 import Projects from "../components/sections/Projects";
 
 function Home() {
+  const theme: string | null = localStorage.getItem("theme");
+
+  if (theme) {
+    document.body.dataset.theme = theme;
+  }
+
   return (
     <>
       <Header />

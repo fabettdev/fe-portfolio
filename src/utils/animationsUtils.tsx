@@ -1,67 +1,34 @@
-import { stagger, AnimationSequence } from "framer-motion";
+import { stringToWordsArray, stringToLettersArray } from "./stringUtils";
 
-export const heroSequence: AnimationSequence = [
-  [
-    ".char",
-    { transform: "translate(0%, 0%)" },
-    {
-      duration: 0.5,
-      delay: stagger(0.02, { startDelay: 0.3 }),
-    },
-  ],
-  [
-    ".word",
-    { transform: "translate(0%, 0%)" },
-    {
-      duration: 0.25,
-      delay: -0.1,
-    },
-  ],
-];
+export function stringToWordsElements(string: string, id: string) {
+  const newString: string[] = stringToWordsArray(string);
 
-export const footerHeaderSequence: AnimationSequence = [
-  [
-    ".footer-header-rule",
-    {
-      width: "100%",
-    },
-    {
-      duration: 0.4,
-    },
-  ],
+  function mapWords(word: string, key: number) {
+    return (
+      <span key={key} className="inline-block overflow-hidden ">
+        <span className={`inline-block ${id} relative  translate-y-full`}>
+          {word === " " ? "\u00A0" : word}
+        </span>
+      </span>
+    );
+  }
 
-  [
-    ".footer-title",
-    {
-      transform: "translate(0%, 0%)",
-    },
-    {
-      duration: 0.6,
-      at: 0.25,
-    },
-  ],
-];
+  return newString.map(mapWords);
+}
 
-export const footerContentSequence: AnimationSequence = [
-  [
-    ".footer-content-rule",
-    {
-      width: "100%",
-    },
-    {
-      duration: 0.4,
-    },
-  ],
+export function stringToLettersElements(string: string, id: string) {
+  const newString: string[] = stringToLettersArray(string);
 
-  [
-    ".footer-link",
-    {
-      transform: "translate(0%, 0%)",
-    },
-    {
-      duration: 0.6,
-      delay: stagger(0.1),
-      at: 0.25,
-    },
-  ],
-];
+  function mapLetters(letter: string, key: number) {
+    return (
+      <span
+        key={key}
+        className={`${id} relative inline-block translate-y-full`}
+      >
+        {letter}
+      </span>
+    );
+  }
+
+  return newString.map(mapLetters);
+}

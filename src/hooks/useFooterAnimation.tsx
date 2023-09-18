@@ -4,7 +4,7 @@ import { useInView, useAnimate, AnimationScope } from "framer-motion";
 import {
   footerContentSequence,
   footerHeaderSequence,
-} from "../utils/animationsUtils";
+} from "../utils/sequencesUtils";
 
 export function useFooterAnimation(
   headerRef: React.RefObject<HTMLHeadingElement>,

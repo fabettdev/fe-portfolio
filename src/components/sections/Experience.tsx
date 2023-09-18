@@ -2,8 +2,8 @@ import { useRef } from "react";
 // Hooks
 import { useExperienceAnimation } from "../../hooks/useExperienceAnimation";
 // Components
-import Button from "../ui/Button";
 import ExperienceCard from "../ExperienceCard";
+import Button from "../ui/Button";
 // Utils
 import { experiencesArray, ExperienceInt } from "../../utils/experiencesUtils";
 
@@ -14,6 +14,18 @@ export default function Experience(): React.ReactElement {
   function renderCards(): React.ReactNode {
     return experiencesArray.map(function (item: ExperienceInt) {
       return <ExperienceCard key={item.id} {...item} />;
+    });
+  }
+
+  function donwloadHandler() {
+    fetch("fabrizio-ettori-cv.pdf").then((res) => {
+      res.blob().then((blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const alink = document.createElement("a");
+        alink.href = url;
+        alink.download = "fabrizio-ettori-cv.pdf";
+        alink.click();
+      });
     });
   }
 
@@ -35,7 +47,10 @@ export default function Experience(): React.ReactElement {
         <div className="flex-1 flex flex-col gap-20">{renderCards()}</div>
       </section>
       <section className="relative w-fit mx-auto mt-10">
-        <Button className="bg-brown hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-lg inline-flex items-center">
+        <Button
+          className="bg-brown hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-lg inline-flex items-center cursor-pointer"
+          onClick={donwloadHandler}
+        >
           <>
             <svg
               className="fill-white w-4 h-4 mr-2"
