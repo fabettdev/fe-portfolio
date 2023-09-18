@@ -30,21 +30,16 @@ export function renderSkills(): React.ReactNode {
   return skillsArray.map(function mapSkills(
     item: SkillInt
   ): React.ReactElement {
-    let color: string = "";
-
-    if (item.colorSingle) {
-      color = `bg-[#${item.colorSingle}]`;
-    } else {
-      color = `bg-gradient-to-b from-[#${item.colorFrom}] to-[#${item.colorTo}]`;
-    }
-
     return (
       <article
         key={item.id}
         className="w-3/12 lg:w-2/12 lg:text-sm flex flex-col items-center lg:justify-center"
       >
         <figure
-          className={`w-[70%] lg:w-2/4 aspect-square ${color} flex justify-center items-center rounded-xl mb-1`}
+          className={
+            "w-[70%] lg:w-2/4 aspect-square flex justify-center items-center rounded-xl mb-1 " +
+            item.color
+          }
         >
           <img
             className="w-[70%] h-auto"

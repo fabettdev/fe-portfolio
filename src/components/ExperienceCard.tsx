@@ -29,8 +29,11 @@ export default function ExperienceCard(
       className="rounded-2xl border-2 border-dark w-full bg-light text-dark"
     >
       <header className="p-4 border-b-2 border-dark">
-        <h3 className="text-2xl font-medium">{props.position}</h3>
-        <div className="text-darkGrey text-lg">{props.company}</div>
+        <h3 className="text-xl lg:text-2xl font-medium">{props.position}</h3>
+        <div className="lg:flex lg:justify-between ext-darkGrey text-base lg:text-lg">
+          <div>{props.company}</div>
+          <div>{props.duration}</div>
+        </div>
       </header>
       <section className="p-4">
         <p>{props.description}</p>

@@ -18,130 +18,128 @@ export interface SkillInt {
   id: number;
   src: string;
   name: string;
-  colorSingle: string;
-  colorFrom: string;
-  colorTo: string;
+  color: string;
 }
+
+/* if (item.color) {
+  if (item.color === "bg-white" || item.color === "black") {
+    color = `bg-${item.color}`;
+  } else {
+    color = `bg-[${item.color}]`;
+  }
+} else {
+  color = `bg-gradient-to-b from-[${item.colorFrom}] to-[${item.colorTo}]`;
+}
+
+return (
+  <article
+    key={item.id}
+    className="w-3/12 lg:w-2/12 lg:text-sm flex flex-col items-center lg:justify-center"
+  >
+    <figure
+      className={
+        "w-[70%] lg:w-2/4 aspect-square flex justify-center items-center rounded-xl mb-1 " +
+        color
+      }
+    >
+      <img
+        className="w-[70%] h-auto"
+        src={item.src}
+        alt={item.name + " logo"}
+      />
+    </figure>
+    <h3 className="font-medium">{item.name}</h3>
+  </article> */
 
 export const skillsArray: SkillInt[] = [
   {
     id: 1,
     src: htmlLogo,
     name: "HTML",
-    colorSingle: "",
-    colorFrom: "E44D26",
-    colorTo: "F16529",
+    color: "bg-gradient-to-b from-[#e44d26] to-[#f16529]",
   },
   {
     id: 2,
     src: cssLogo,
     name: "CSS",
-    colorSingle: "",
-    colorFrom: "1572B6",
-    colorTo: "35A8DB",
+    color: "bg-gradient-to-b from-[#1572b6] to-[#35a8db]",
   },
   {
     id: 3,
     src: sassLogo,
     name: "SASS",
-    colorSingle: "FFFFFF",
-    colorFrom: "",
-    colorTo: "",
+    color: "bg-white",
   },
   {
     id: 4,
     src: javascriptLogo,
     name: "JavaScript",
-    colorSingle: "F0DB4F",
-    colorFrom: "",
-    colorTo: "",
+    color: "bg-[#f0db4f]",
   },
   {
     id: 5,
     src: typescriptLogo,
     name: "TypeScript",
-    colorSingle: "2D79C7",
-    colorFrom: "",
-    colorTo: "",
+    color: "bg-[#2d79c7]",
   },
   {
     id: 6,
     src: reactLogo,
     name: "React",
-    colorSingle: "FFFFFF",
-    colorFrom: "",
-    colorTo: "",
+    color: "bg-white",
   },
   {
     id: 7,
     src: nextLogo,
     name: "Next",
-    colorSingle: "000",
-    colorFrom: "",
-    colorTo: "",
+    color: "black",
   },
   {
     id: 8,
     src: expoLogo,
     name: "Expo",
-    colorSingle: "FFFFFF",
-    colorFrom: "",
-    colorTo: "",
+    color: "bg-white",
   },
   {
     id: 9,
     src: angularLogo,
     name: "Angular",
-    colorSingle: "",
-    colorFrom: "B52E31",
-    colorTo: "E23237",
+    color: "bg-gradient-to-b from-[#b52e31] to-[#e23237]",
   },
   {
     id: 10,
     src: reduxLogo,
     name: "Redux",
-    colorSingle: "FFFFFF",
-    colorFrom: "",
-    colorTo: "",
+    color: "bg-white",
   },
   {
     id: 11,
     src: rxjsLogo,
     name: "RxJs",
-    colorSingle: "",
-    colorFrom: "EC0A8E",
-    colorTo: "652C89",
+    color: "bg-gradient-to-b from-[#ec0a8e] to-[#652c89]",
   },
   {
     id: 12,
     src: mysqlLogo,
     name: "MySQL",
-    colorSingle: "FFFFFF",
-    colorFrom: "",
-    colorTo: "",
+    color: "bg-white",
   },
   {
     id: 13,
     src: tailwindLogo,
     name: "Tailwind",
-    colorSingle: "FFFFFF",
-    colorFrom: "",
-    colorTo: "",
+    color: "bg-white",
   },
   {
     id: 14,
     src: framerMotionLogo,
     name: "Framer Motion",
-    colorSingle: "FFFFFF",
-    colorFrom: "",
-    colorTo: "",
+    color: "bg-white",
   },
   {
     id: 15,
     src: gitLogo,
     name: "Git",
-    colorSingle: "FFFFFF",
-    colorFrom: "",
-    colorTo: "",
+    color: "bg-white",
   },
 ];
