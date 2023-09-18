@@ -5,19 +5,22 @@
 body {
   font-family: "Inter", sans-serif;
   overflow-x: hidden;
+  --color-black: #000;
+  --color-white: #fff;
+  --color-brown: #ce7967;
 }
 
 body[data-theme="light"] {
-  --color-black: #141414;
-  --color-white: #f9f7f2;
+  --color-dark: #141414;
+  --color-light: #f9f7f2;
   --color-light-grey: #f3f4f6;
   --color-grey: #dee2e6;
   --color-dark-grey: #616161;
 }
 
 body[data-theme="dark"] {
-  --color-black: #f9f7f2;
-  --color-white: #141414;
+  --color-dark: #f9f7f2;
+  --color-light: #141414;
   --color-light-grey: #111;
   --color-grey: #dee2e6;
   --color-dark-grey: #616161;

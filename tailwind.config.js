@@ -4,11 +4,14 @@ export default {
   theme: {
     extend: {},
     colors: {
+      dark: "var(--color-dark)",
+      light: "var(--color-light)",
       black: "var(--color-black)",
       white: "var(--color-white)",
       grey: "var(--color-grey)",
       darkGrey: "var(--color-dark-grey)",
       lightGrey: "var(--color-light-grey)",
+      brown: "var(--color-brown)",
     },
     screens: {
       xs: "320px",
