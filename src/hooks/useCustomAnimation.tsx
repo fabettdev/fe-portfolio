@@ -1,8 +1,10 @@
-import { useAnimate, AnimationSequence } from "framer-motion";
+import { useAnimate, AnimationSequence, AnimationScope } from "framer-motion";
 import { useEffect } from "react";
 
-export default function useCustomAnimation(sequence: AnimationSequence) {
-  const [scope, animate]: any = useAnimate();
+export default function useCustomAnimation(
+  sequence: AnimationSequence
+): AnimationScope {
+  const [scope, animate] = useAnimate();
 
   useEffect(() => {
     animate(sequence);

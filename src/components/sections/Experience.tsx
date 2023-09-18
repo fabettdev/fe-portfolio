@@ -1,139 +1,53 @@
-import { useRef, useState, useEffect } from "react";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  AnimatePresence,
-} from "framer-motion";
+import { useRef } from "react";
+// Hooks
+import { useExperienceAnimation } from "../../hooks/useExperienceAnimation";
+// Components
+import Button from "../ui/Button";
 import ExperienceCard from "../ExperienceCard";
+// Utils
+import { experiencesArray, ExperienceInt } from "../../utils/experiencesUtils";
 
 export default function Experience(): React.ReactElement {
-  const ref = useRef(null);
-  const [index, setIndex] = useState(0);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end end"],
-  });
-  const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  const scrollRef = useRef<HTMLElement>(null);
+  const scope = useExperienceAnimation(scrollRef);
 
-  useEffect(() => {
-    y.on("change", (latest) => setIndex(latest));
-  }, []);
+  function renderCards(): React.ReactNode {
+    return experiencesArray.map(function (item: ExperienceInt) {
+      return <ExperienceCard key={item.id} {...item} />;
+    });
+  }
 
   return (
-    <section className="h-[600svh] snap-y snap-mandatory" ref={ref}>
-      <div className="container h-[100svh] top-0 sticky lg:flex mx-auto justify-between">
-        <header className="h-full pt-[20%]">
-          <h2 className="w-4/12 text-4xl md:text-5xl xl:text-6xl mb-16 lg:mb-0">
-            Esperienze
-          </h2>
-          <a className="lg:pl-4" href="">
-            Download CV Completo
-          </a>
-        </header>
-        <div className="h-full lg:w-8/12 xl:w-4/12 relative flex items-center">
-          {/* <div className="h-3/5 w-[0.25rem] bg-darkGrey rounded-xl mr-11 relative">
-            <div
-              className={`absolute top-0 left-0 w-full rounded-xl bg-[#a594fd]`}
-              style={{ height: index + 15 + "%" }}
-            ></div>
-            <div className="rounded-full bg-black border-white border-8 box p-1.5 absolute top-[10%] left-1/2 -translate-x-1/2"></div>
-            <div className="rounded-full bg-darkGrey border-white border-8 box p-1.5 absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2"></div>
-            <div className="rounded-full bg-darkGrey border-white border-8 box p-1.5 absolute bottom-[10%] left-1/2 -translate-x-1/2"></div>
-          </div> */}
-          <div className="h-3/5 flex-1 relative">
-            <AnimatePresence>
-              {index < 100 / 3 && (
-                <motion.div
-                  initial={{
-                    opacity: 0,
-                    scale: 0.7,
-                    top: "20%",
-                    position: "absolute",
-                  }}
-                  animate={{
-                    opacity: 1,
-                    scale: 1,
-                    top: "0%",
-                    position: "relative",
-                  }}
-                  exit={{
-                    opacity: 0,
-                    scale: 0.7,
-                    top: "20%",
-                    zIndex: -10,
-                    position: "absolute",
-                  }}
-                  transition={{ duration: 0.6 }}
-                  className="h-full left-0 w-full top-0 flex items-center snap-center"
-                >
-                  <ExperienceCard />
-                </motion.div>
-              )}
-            </AnimatePresence>
-
-            <AnimatePresence>
-              {index >= 100 / 3 && index < (100 / 3) * 2 && (
-                <motion.div
-                  initial={{
-                    opacity: 0,
-                    scale: 0.7,
-                    top: "20%",
-                    position: "absolute",
-                  }}
-                  animate={{
-                    opacity: 1,
-                    scale: 1,
-                    top: "0%",
-                    position: "relative",
-                  }}
-                  exit={{
-                    opacity: 0,
-                    scale: 0.7,
-                    top: "20%",
-                    zIndex: -10,
-                    position: "absolute",
-                  }}
-                  transition={{ duration: 0.6 }}
-                  className="h-full left-0 w-full top-0 flex items-center snap-center"
-                >
-                  <ExperienceCard />
-                </motion.div>
-              )}
-            </AnimatePresence>
-
-            <AnimatePresence>
-              {index >= (100 / 3) * 2 && (
-                <motion.div
-                  initial={{
-                    opacity: 0,
-                    scale: 0.7,
-                    top: "20%",
-                    position: "absolute",
-                  }}
-                  animate={{
-                    opacity: 1,
-                    scale: 1,
-                    top: "0%",
-                    position: "relative",
-                  }}
-                  exit={{
-                    opacity: 0,
-                    scale: 0.7,
-                    top: "20%",
-                    zIndex: -10,
-                    position: "absolute",
-                  }}
-                  transition={{ duration: 0.6 }}
-                  className="h-full left-0 w-full top-0 flex items-center snap-center"
-                >
-                  <ExperienceCard />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        </div>
-      </div>
+    <section ref={scope} className="container mx-auto my-44 flex flex-col">
+      <header className="experiences-header text-center mb-24 translate-y-[-25rem]">
+        <h2 className="text-5xl lg:text-6xl xxl:text-7xl">Esperienze</h2>
+      </header>
+      <section className="lg:w-5/12 mx-auto flex" ref={scrollRef}>
+        {/* <div className="w-[0.25rem] bg-darkGrey rounded-xl mr-11 relative">
+          <div
+            className={`absolute top-0 left-0 w-full rounded-xl bg-[#a594fd]`}
+            style={{ height: index + "%" }}
+          ></div>
+          <div className="rounded-full bg-dark border-white border-8 box p-1.5 absolute top-[10%] left-1/2 -translate-x-1/2"></div>
+          <div className="rounded-full bg-darkGrey border-white border-8 box p-1.5 absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2"></div>
+          <div className="rounded-full bg-darkGrey border-white border-8 box p-1.5 absolute bottom-[10%] left-1/2 -translate-x-1/2"></div>
+        </div> */}
+        <div className="flex-1 flex flex-col gap-20">{renderCards()}</div>
+      </section>
+      <section className="relative w-fit mx-auto mt-10">
+        <Button className="bg-brown hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-lg inline-flex items-center">
+          <>
+            <svg
+              className="fill-white w-4 h-4 mr-2"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+            >
+              <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
+            </svg>
+            <span>Download CV Completo</span>
+          </>
+        </Button>
+      </section>
     </section>
   );
 }

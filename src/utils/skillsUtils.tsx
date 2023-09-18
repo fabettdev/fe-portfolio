@@ -14,7 +14,16 @@ import tailwindLogo from "../assets/skills/tailwind.png";
 import framerMotionLogo from "../assets/skills/framer-motion.png";
 import gitLogo from "../assets/skills/git.png";
 
-export const skillsArray: any = [
+export interface SkillInt {
+  id: number;
+  src: string;
+  name: string;
+  colorSingle: string;
+  colorFrom: string;
+  colorTo: string;
+}
+
+export const skillsArray: SkillInt[] = [
   {
     id: 1,
     src: htmlLogo,
@@ -35,7 +44,7 @@ export const skillsArray: any = [
     id: 3,
     src: sassLogo,
     name: "SASS",
-    colorSingle: "fff",
+    colorSingle: "FFFFFF",
     colorFrom: "",
     colorTo: "",
   },
@@ -59,7 +68,7 @@ export const skillsArray: any = [
     id: 6,
     src: reactLogo,
     name: "React",
-    colorSingle: "fff",
+    colorSingle: "FFFFFF",
     colorFrom: "",
     colorTo: "",
   },
@@ -75,7 +84,7 @@ export const skillsArray: any = [
     id: 8,
     src: expoLogo,
     name: "Expo",
-    colorSingle: "fff",
+    colorSingle: "FFFFFF",
     colorFrom: "",
     colorTo: "",
   },
@@ -91,7 +100,7 @@ export const skillsArray: any = [
     id: 10,
     src: reduxLogo,
     name: "Redux",
-    colorSingle: "fff",
+    colorSingle: "FFFFFF",
     colorFrom: "",
     colorTo: "",
   },
@@ -107,7 +116,7 @@ export const skillsArray: any = [
     id: 12,
     src: mysqlLogo,
     name: "MySQL",
-    colorSingle: "fff",
+    colorSingle: "FFFFFF",
     colorFrom: "",
     colorTo: "",
   },
@@ -115,7 +124,7 @@ export const skillsArray: any = [
     id: 13,
     src: tailwindLogo,
     name: "Tailwind",
-    colorSingle: "fff",
+    colorSingle: "FFFFFF",
     colorFrom: "",
     colorTo: "",
   },
@@ -123,7 +132,7 @@ export const skillsArray: any = [
     id: 14,
     src: framerMotionLogo,
     name: "Framer Motion",
-    colorSingle: "fff",
+    colorSingle: "FFFFFF",
     colorFrom: "",
     colorTo: "",
   },
@@ -131,7 +140,7 @@ export const skillsArray: any = [
     id: 15,
     src: gitLogo,
     name: "Git",
-    colorSingle: "fff",
+    colorSingle: "FFFFFF",
     colorFrom: "",
     colorTo: "",
   },

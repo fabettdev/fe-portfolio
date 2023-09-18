@@ -10,7 +10,7 @@ function Home() {
   return (
     <>
       <Header />
-      <main className="bg-white text-black">
+      <main className="bg-light text-dark">
         <Hero />
         <Skills />
         <Experience />
